@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Raleway:wght@100&display=swap" rel="stylesheet">
     <title>The Grid</title>
-    
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
    
 </head>
 <body>
     <div class="container-three">
         <div class="content-three">
-            <h1>
-                The Grid 
-            </h1>
-            <p>Platform dedicated to connecting skilled professionals, </br>
-                increasing meaningful collaboration and innovation.</br> 
-               Join our waitlist and be one of the pioneers.
-            </p>
+            <div class="text">
+                <div class="header-title">
+                    The Grid 
+                </div>
+                <div class="right-msg">Platform dedicated to connecting skilled professionals, </br>
+                    increasing meaningful collaboration and innovation.</br> 
+                   Join our waitlist and be one of the pioneers.
+                </div>
+            </div>
+            
             <div class="btn-selection">
                 <button class="btn-cyan">Join Waitlist</button>
                 <button class="btn-cyan">What is The Grid</button>
@@ -31,13 +38,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/CSSRulePlugin.min.js" integrity="sha512-0bzaetZStCnsUgbCtGVxftzF/L32PNOnrMlYLXwBOKl8cUjTSSDfJVyyJsNwGoI0iE0WUqni2eEfO35kJjFj5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
 
         const content = CSSRulePlugin.getRule('.content-three:before')
-        const h1 = document.querySelector('h1')
-        const p = document.querySelector('p')
+        const h1 = document.querySelector('.header-title')
+        const p = document.querySelector('.right-msg')
         const btn = document.querySelector('.btn-selection')
         const tl = gsap.timeline()
 
