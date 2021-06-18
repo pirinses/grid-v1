@@ -1,4 +1,7 @@
-# Three.js Starter
+Created with Three.js 
+
+
+<!-- # Three.js Starter
 Courtesy of Bruno Simon of https://threejs-journey.xyz/
 
 ## Setup
@@ -15,3 +18,4 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
+ -->

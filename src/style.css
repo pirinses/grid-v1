@@ -9,8 +9,14 @@ body
 {
     height: 100vh;
     font-family: 'Poppins';
-    color: white;
+    color: white !important;
     font-size: 1rem;
+}
+
+.form-floating>.form-control, .form-floating>.form-select {
+    color: white !important;
+    font-weight: normal !important;
+    font-family: sans-serif;
 }
 
 .webgl
@@ -106,7 +112,149 @@ body
 
 }
 
+.btn-save{
+    transition: all .5s ease;
+    color: #fff;
+    border: 3px solid rgb(27, 191, 212);
+    font-family:'Poppins', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 14px;
+    background-color : transparent;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    outline: none;
+    border-radius: 30px;
+    cursor: pointer;
+    min-width: 200px
+
+}
+
 .btn-cyan:hover{
     background-color: rgb(14, 123, 138);
     border-color: transparent;
+}
+
+.btn-save:hover{
+    background: rgb(27, 191, 212) !important;
+    color: black !important;
+}
+
+.fade.in {
+    opacity: 1 !important;
+    }
+    
+    .modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0) !important;
+    -o-transform: translate(0, 0) !important;
+    transform: translate(0, 0) !important;
+    }
+    
+    .modal-backdrop .fade .in {
+    opacity: 0.5 !important;
+    }
+    
+    .modal-backdrop.fade {
+    opacity: 0.5 !important;
+    }
+
+.modal{
+    color: black;
+    font-family: sans-serif !important;
+}
+
+
+/* FORM */
+.container-form{
+    top: 10%;
+    animation: form-out 2s ease forwards;
+    position: absolute;
+}
+
+@keyframes form-out {
+    0%{
+        opacity: 0;
+      
+    }
+
+    66%{
+        opacity: 50%;
+        
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+
+.modal-loaded{
+    width: 500px !important;
+    position: absolute;
+    margin-left: 10vw !important;
+    color: white;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-dialog{
+    border-radius: 25px;
+}
+
+
+.modal-content{
+    border-radius: 25px;
+    color: white;
+    background: rgb(10 76 86 / 54%);
+}
+
+
+.modal-body input, textarea{
+    background: transparent !important;
+    color: white;
+    font-size: 14px;
+}
+
+.modal-header{
+    border-bottom: 0;
+}
+
+
+.modal-footer{
+    border-top: 0;
+}
+
+.join-active-selected{
+    animation: modal-transform 0.5s ease-in forwards;
+}
+
+@keyframes modal-transform {
+    0%{
+        opacity: 0;
+    }
+    33%{
+        opacity: 10%;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.hide{
+    opacity: 0;
+    transition: ease-out linear;
+}
+
+.show{
+    opacity: 1;
+    transition: ease-in linear;
+}
+
+.form-floating {
+    font-family: 'Raleway';
+    font-size: 14px;
+    font-weight: normal;
 }
