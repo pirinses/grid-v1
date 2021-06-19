@@ -1,3 +1,4 @@
+import './style.css'
 const scriptURL = 'https://script.google.com/macros/s/AKfycbw5nTR8_GsRq4qz1vXtGkAtS9FZK5RFstfjbA4-topAVV8ZA31xMX7CdXv9a-A-IP9B/exec';
 const form = document.forms['gridsheet'];
 const joinWaitlist = document.getElementById('btn-join');
