@@ -186,12 +186,15 @@ const joinWaitlist = document.getElementById('btn-join');
 const closeButton = document.querySelector('.btn-close');
 const modal = document.querySelector('.modal');
 const textHome = document.querySelector('.container-three');
+const inputs = document.querySelectorAll('input');
+const textarea = document.querySelector('textarea');
 
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
             alert("Thanks for joining! Expect to hear from us soon."); 
+            clearFields();
       })
       .catch(error => console.error('Error!', error.message))
   });
@@ -210,6 +213,11 @@ const textHome = document.querySelector('.container-three');
     closeButton.addEventListener('click', () => {
       textHome.classList.remove('hide');
     });
+  }
+
+  const clearFields = () => {
+    inputs.forEach(input => input.value = '');
+    textarea.value = '';
   }
  
 
