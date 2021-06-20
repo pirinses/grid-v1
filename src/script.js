@@ -35,24 +35,81 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3
 
 // Profile Geometry
 const profileGeometry = new THREE.BufferGeometry;
-const profileCnt = 300;
+const profileCnt = 100;
 
 const profArray = new Float32Array(profileCnt * 3);
 
 for(let i = 0; i < profileCnt * 3; i++){
     //posArray[i] = Math.random() - 0.5
 
-    profArray[i] = (Math.random() - 0.8) * (Math.random() * 8)
+    profArray[i] = (Math.random() - 0.5) * (Math.random() * 4)
 }
 
 profileGeometry.setAttribute('position', new THREE.BufferAttribute(profArray, 3))
 
 
 
+// Sphere Geometry
+const sphereParticles = new THREE.BufferGeometry();
+const vertices = [];
+
+const vertex = new THREE.Vector3();
+
+for ( let i = 0; i < 1500; i ++ ) {
+
+    vertex.x = Math.random() * 2 - 1;
+    vertex.y = Math.random() * 2 - 1;
+    vertex.z = Math.random() * 2 - 1;
+    vertex.normalize();
+
+    vertices.push( vertex.x, vertex.y, vertex.z );
+
+    vertex.multiplyScalar( Math.random() * 0.0005 + 1 );
+
+}
+
+//dot particles
+const spparticlesCnt = 10000;
+const sposArray = new Float32Array(spparticlesCnt * 3);
+
+for(let i = 0; i < spparticlesCnt * 2; i++){
+  sposArray[i] = Math.random() - 1
+
+}
+
+sphereParticles.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+
+
+// profile sphere particles geometry 
+
+const sphereProfileParticles = new THREE.BufferGeometry();
+const sprofilevertices = [];
+
+const sprofilevertex = new THREE.Vector3();
+
+for ( let i = 0; i < 150; i ++ ) {
+
+  sprofilevertex.x = Math.random() * 2 - 0;
+  sprofilevertex.y = Math.random() * 2 - 1;
+  sprofilevertex.z = Math.random() * 2 - 1;
+  sprofilevertex.normalize();
+
+  sprofilevertices.push( sprofilevertex.x, sprofilevertex.y, sprofilevertex.z );
+
+  sprofilevertex.multiplyScalar( Math.random() * 0.005 + 2 );
+
+
+}
+
+sphereProfileParticles.setAttribute( 'position', new THREE.Float32BufferAttribute( sprofilevertices, 3 ) );
+
 // Materials
 
 const material = new THREE.PointsMaterial({
-    size: 0.005
+    size: 0.05,
+    map: cross,
+    color: 'cyan',
+    transparent: true,
 })
 
 const particlesMaterial = new THREE.PointsMaterial({
@@ -69,11 +126,30 @@ const particlesProfile = new THREE.PointsMaterial({
     color: 'cyan'
 })
 
+const spherematerial = new THREE.PointsMaterial()
+spherematerial.color = new THREE.Color(0x00E8F9)
+spherematerial.size = 1.3
+spherematerial.sizeAttenuation = false
+spherematerial.alphaTest = 0.5
+spherematerial.morphTargets = true
+
+const sphereParticlesProfile = new THREE.PointsMaterial({
+  size: 0.05,
+  map: cross,
+  transparent: true,
+  color: 'cyan'
+})
+
+
 // Mesh
 const sphere = new THREE.Points(geometry,material)
 const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
 const particlesProfileFloat = new THREE.Points(profileGeometry, particlesProfile)
-scene.add(particlesMesh, particlesProfileFloat)
+const sphereParticleMesh = new THREE.Points(sphereParticles,spherematerial)
+const spProfileGeometryMesh = new THREE.Points(sphereProfileParticles,sphereParticlesProfile)
+
+//scene.add(particlesMesh, particlesProfileFloat)       //for spreadout particles backgrount
+scene.add(sphereParticleMesh,spProfileGeometryMesh)    //for sphere background
 //scene.add(sphere, particlesMesh, particlesProfileFloat)
 
 // Lights
@@ -129,7 +205,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.setClearColor(new THREE.Color('#21282a'), 1)
+renderer.setClearColor(new THREE.Color('#001112'), 1)
 
 /* Mouse */
 
@@ -137,6 +213,9 @@ document.addEventListener('mousemove', animateParticles)
 
 let mouseX = 0
 let mouseY = 0
+
+let targetX = 0
+let targetY = 0
 
 function animateParticles(event){
     mouseY = event.clientY
@@ -159,6 +238,10 @@ const tick = () =>
     particlesMesh.rotation.y = -.1 * elapsedTime
     particlesProfileFloat.rotation.y = -.1 * elapsedTime
 
+    //active objects
+    sphereParticleMesh.rotation.y = .3 * elapsedTime    
+    spProfileGeometryMesh.rotation.y = .5 * elapsedTime
+
     if(mouseX > 0){
     particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008)
     particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
@@ -166,6 +249,16 @@ const tick = () =>
     particlesProfileFloat.rotation.y = mouseX * (elapsedTime * 0.00008)
     particlesProfileFloat.rotation.x = -mouseY * (elapsedTime * 0.00008)
     }
+
+    if(mouseX > 0){
+      // sphereParticleMesh.rotation.y = mouseX * (elapsedTime * 0.00008)
+      // sphereParticleMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
+  
+      spProfileGeometryMesh.rotation.y = mouseX * (elapsedTime * 0.0001)
+      spProfileGeometryMesh.rotation.x = -mouseY * (elapsedTime * 0.0001)
+      }
+
+
     // Update Orbital Controls
     // controls.update()
 
